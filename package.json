@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc -p tsconfig,json",
+    "build": "tsc -p tsconfig.json",
     "generate_schema": "tsnode src/generateSchema.ts",
     "dev": "ts-node-dev --watch src/schema.graphql src/start.ts"
   },
@@ -12,8 +12,6 @@
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "^3.7.0",
-    "@types/graphql-fields": "^1.3.4",
-    "@types/node": "^16.4.11",
     "apollo-server": "^3.5.0",
     "class-validator": "^0.13.2",
     "graphql": "^15.8.0",
@@ -22,14 +20,15 @@
     "prisma": "^3.7.0",
     "reflect-metadata": "^0.1.13",
     "tslib": "^2.3.1",
-    "type-graphql": "^1.1.1",
-    "typescript": "^4.3.5",
-    "uuid": "^8.3.2"
+    "type-graphql": "^1.1.1"
   },
   "devDependencies": {
+    "@types/graphql-fields": "^1.3.4",
+    "@types/node": "^16.4.11",
     "prettier": "^2.3.2",
     "ts-node": "^10.1.0",
     "ts-node-dev": "^1.1.8",
-    "typegraphql-prisma": "^0.18.3"
+    "typegraphql-prisma": "^0.18.3",
+    "typescript": "^4.3.5"
   }
 }
