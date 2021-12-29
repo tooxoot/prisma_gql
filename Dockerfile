@@ -27,9 +27,10 @@ RUN mv /dep_prod/node_modules .
 RUN npx prisma generate
 
 WORKDIR /app
-RUN mv /app_build/node_modules .
-RUN mv /app_build/prisma .
-RUN mv /app_build/dist .
-RUN rm -rf /app_build
+RUN mv /dep_build/node_modules .
+RUN mv /dep_build/prisma .
+RUN mv /dep_build/dist .
+RUN rm -rf /dep_build
+RUN rm -rf /dep_prod
 
 CMD [ "node", "dist/start.js"]
