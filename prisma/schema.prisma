@@ -1,0 +1,42 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_URL")
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["mongodb"]
+  binaryTargets   = ["darwin-arm64"]
+}
+
+generator typegraphql {
+  provider = "typegraphql-prisma"
+}
+
+model User {
+  id        String     @id @default(uuid())
+  name      String     @unique
+  bio       String?
+  Posts     Post[]
+  Reactions Reaction[]
+}
+
+model Reaction {
+  id     String @id @default(uuid())
+  type   String
+  user   User   @relation(fields: [userId], references: [id])
+  post   Post   @relation(fields: [postId], references: [id])
+  userId String
+  postId String
+}
+
+model Post {
+  id        String     @id @default(uuid())
+  txt       String
+  user      User       @relation(references: [id], fields: [userId])
+  userId    String
+  replies   Post[]     @relation("replies")
+  parent    Post?      @relation("replies", fields: [parentId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  parentId  String?
+  Reactions Reaction[]
+}
