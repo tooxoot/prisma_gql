@@ -1,11 +1,12 @@
 FROM node:16-alpine as dep
 
-WORKDIR /app
+RUN apk add --update openssl
+
+WORKDIR /dep_prod
 COPY package.json .
 RUN npm install --production
 
-RUN apk add --update make openssl
-WORKDIR /app_build
+WORKDIR /dep_build
 COPY package.json .
 RUN npm install
 
@@ -22,10 +23,10 @@ RUN npm run build
 FROM build as release
 
 RUN rm -rf node_modules
-RUN mv /app/node_modules .
+RUN mv /dep_prod/node_modules .
 RUN npx prisma generate
-WORKDIR /app
 
+WORKDIR /app
 RUN mv /app_build/node_modules .
 RUN mv /app_build/prisma .
 RUN mv /app_build/dist .
