@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "generate_schema": "tsnode src/generateSchema.ts",
-    "dev": "ts-node-dev --watch src/schema.graphql src/start.ts"
+    "generate_schema": "ts-node src/generateSchema.ts",
+    "dev": "ts-node-dev --watch src/server.ts src/start.ts"
   },
   "author": "",
   "license": "ISC",
